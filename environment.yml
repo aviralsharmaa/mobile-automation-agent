@@ -1,0 +1,17 @@
+name: mobile-automation-agent
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+    - pure-python-adb
+    - openai
+    - SpeechRecognition
+    - openai-whisper
+    - pyttsx3
+    - langgraph
+    - pillow
+    - pydantic
+    - python-dotenv
+    - pyyaml

@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  mobile-automation-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mobile-automation-agent
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ELEVENLABS_API_KEY=${ELEVENLABS_API_KEY:-}
+      - ADB_HOST=${ADB_HOST:-host.docker.internal}
+      - ADB_PORT=${ADB_PORT:-5037}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    volumes:
+      - ./config:/app/config:ro
+      - ./logs:/app/logs
+      - ./temp:/app/temp
+    devices:
+      - /dev/bus/usb:/dev/bus/usb
+    privileged: true
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - agent-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  agent-network:
+    driver: bridge
+
+volumes:
+  agent-logs:
+  agent-temp:

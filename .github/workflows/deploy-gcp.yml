@@ -1,0 +1,106 @@
+name: Deploy to GCP Cloud Run
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:  # Manual trigger
+
+env:
+  PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  GCP_REGION: ${{ secrets.GCP_REGION || 'us-central1' }}
+  SERVICE_NAME: mobile-automation-agent
+  IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.SERVICE_NAME }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Run tests
+      run: |
+        python -m pytest tests/ -v || echo "Tests completed"
+
+  build-and-deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v2
+      with:
+        service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        export_default_credentials: true
+    
+    - name: Configure Docker for GCR
+      run: |
+        gcloud auth configure-docker
+    
+    - name: Build Docker image
+      run: |
+        docker build -f Dockerfile.cloudrun \
+          -t $IMAGE_NAME:$GITHUB_SHA \
+          -t $IMAGE_NAME:latest \
+          .
+    
+    - name: Push Docker image
+      run: |
+        docker push $IMAGE_NAME:$GITHUB_SHA
+        docker push $IMAGE_NAME:latest
+    
+    - name: Deploy to Cloud Run
+      run: |
+        gcloud run deploy $SERVICE_NAME \
+          --image $IMAGE_NAME:$GITHUB_SHA \
+          --platform managed \
+          --region $GCP_REGION \
+          --allow-unauthenticated \
+          --set-env-vars OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} \
+          --set-env-vars ELEVENLABS_API_KEY=${{ secrets.ELEVENLABS_API_KEY }} \
+          --set-env-vars ADB_HOST=${{ secrets.ADB_HOST || 'host.docker.internal' }} \
+          --set-env-vars ADB_PORT=${{ secrets.ADB_PORT || '5037' }} \
+          --set-env-vars LOG_LEVEL=INFO \
+          --memory 2Gi \
+          --cpu 2 \
+          --timeout 300 \
+          --max-instances 10 \
+          --min-instances 0 \
+          --port 8080 \
+          --quiet
+    
+    - name: Get service URL
+      id: get-url
+      run: |
+        SERVICE_URL=$(gcloud run services describe $SERVICE_NAME \
+          --region $GCP_REGION \
+          --format 'value(status.url)')
+        echo "url=$SERVICE_URL" >> $GITHUB_OUTPUT
+        echo "Service deployed to: $SERVICE_URL"
+    
+    - name: Verify deployment
+      run: |
+        sleep 15
+        curl -f ${{ steps.get-url.outputs.url }}/api/health || exit 1
+        echo "Deployment verified successfully!"

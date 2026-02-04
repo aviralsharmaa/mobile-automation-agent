@@ -1,0 +1,259 @@
+# Device Configuration
+device:
+  # Specify device serial to use (run 'adb devices' to see available devices)
+  # Leave empty or comment out to use first available device
+  serial: "41311JEHN00968"  # Your real phone
+  # serial: "emulator-5554"  # Emulator (uncomment to use)
+
+# App Package Mappings (from your real device: 41311JEHN00968)
+apps:
+  # ===== SYSTEM APPS =====
+  settings: com.android.settings
+  phone: com.google.android.dialer
+  contacts: com.google.android.contacts
+  messages: com.google.android.apps.messaging
+  camera: com.google.android.GoogleCamera
+  gallery: com.google.android.apps.photos
+  photos: com.google.android.apps.photos
+  files: com.google.android.apps.nbu.files
+  calculator: com.google.android.calculator
+  calendar: com.google.android.calendar
+  clock: com.google.android.deskclock
+  alarm: com.google.android.deskclock
+  chrome: com.android.chrome
+  
+  # ===== GOOGLE APPS =====
+  gmail: com.google.android.gm
+  youtube: com.google.android.youtube
+  youtube music: com.google.android.apps.youtube.music
+  maps: com.google.android.apps.maps
+  google maps: com.google.android.apps.maps
+  drive: com.google.android.apps.docs
+  google drive: com.google.android.apps.docs
+  docs: com.google.android.apps.docs.editors.docs
+  google docs: com.google.android.apps.docs.editors.docs
+  sheets: com.google.android.apps.docs.editors.sheets
+  google sheets: com.google.android.apps.docs.editors.sheets
+  slides: com.google.android.apps.docs.editors.slides
+  google slides: com.google.android.apps.docs.editors.slides
+  keep: com.google.android.keep
+  google keep: com.google.android.keep
+  translate: com.google.android.apps.translate
+  google translate: com.google.android.apps.translate
+  authenticator: com.google.android.apps.authenticator2
+  google authenticator: com.google.android.apps.authenticator2
+  google pay: com.google.android.apps.nbu.paisa.user
+  gpay: com.google.android.apps.nbu.paisa.user
+  wallet: com.google.android.apps.walletnfcrel
+  google wallet: com.google.android.apps.walletnfcrel
+  duo: com.google.android.apps.tachyon
+  google meet: com.google.android.apps.tachyon
+  assistant: com.google.android.apps.googleassistant
+  google assistant: com.google.android.apps.googleassistant
+  gemini: com.google.android.apps.bard
+  google gemini: com.google.android.apps.bard
+  bard: com.google.android.apps.bard
+  weather: com.google.android.apps.weather
+  recorder: com.google.android.apps.recorder
+  
+  # ===== AI & PRODUCTIVITY =====
+  chatgpt: com.openai.chatgpt
+  gpt: com.openai.chatgpt
+  perplexity: ai.perplexity.app.android
+  grok: ai.x.grok
+  toki: ai.orionarm.toki
+  
+  # ===== SOCIAL MEDIA =====
+  whatsapp: com.whatsapp
+  instagram: com.instagram.android
+  facebook: com.facebook.katana
+  messenger: com.facebook.orca
+  twitter: com.twitter.android
+  x: com.twitter.android
+  telegram: org.telegram.messenger
+  snapchat: com.snapchat.android
+  discord: com.discord
+  linkedin: com.linkedin.android
+  pinterest: com.pinterest
+  
+  # ===== ENTERTAINMENT =====
+  netflix: com.netflix.mediaclient
+  spotify: com.spotify.music
+  prime video: com.amazon.avod.thirdpartyclient
+  amazon prime: com.amazon.avod.thirdpartyclient
+  vlc: org.videolan.vlc
+  mx player: com.mxtech.videoplayer.ad
+  shazam: com.shazam.android
+  
+  # ===== SHOPPING =====
+  amazon: in.amazon.mShop.android.shopping
+  flipkart: com.flipkart.android
+  myntra: com.myntra.android
+  ajio: com.ril.ajio
+  meesho: com.meesho.supply
+  lenskart: com.lenskart.app
+  healthkart: com.healthkart.healthkart
+  souled store: com.thesouledstore
+  bear house: com.thebearhouse
+  olx: com.olx.southasia
+  
+  # ===== FOOD & DELIVERY =====
+  zomato: com.application.zomato
+  swiggy: in.swiggy.android.instamart
+  swiggy instamart: in.swiggy.android.instamart
+  blinkit: com.grofers.customerapp
+  zepto: com.zeptoconsumerapp
+  bigbasket: com.grofers.customerapp.lit
+  dominos: com.Dominos
+  mcdonalds: com.mcdonalds.mobileapp
+  country delight: app.mycountrydelight.in.countrydelight
+  eatclub: com.poncho.eatclub
+  ferns and petals: com.Clairvoyant.FernsAndPetals
+  
+  # ===== TRAVEL & TRANSPORT =====
+  uber: com.ubercab
+  ola: com.olacabs.customer
+  rapido: com.rapido.passenger
+  makemytrip: com.makemytrip
+  ixigo: com.ixigo
+  booking: com.booking
+  airbnb: com.airbnb.android
+  skyscanner: net.skyscanner.android.main
+  flixbus: de.flixbus.app
+  blablacar: com.comuto
+  irctc: cris.org.in.prs.ima
+  where is my train: com.whereismytrain.android
+  delhi metro: com.sraoss.dmrc
+  intrcity: bus.tickets.intrcity
+  zingbus: com.zingbusbtoc.zingbus
+  parkwheels: com.ovunque.parkwheels
+  
+  # ===== FINANCE & BANKING =====
+  paytm: net.one97.paytm
+  phonepe: com.phonepe.app
+  hdfc: com.snapwork.hdfc
+  hdfc now: com.hdfcbank.android.now
+  hdfc payzapp: com.hdfcbank.payzapp
+  sbi: com.sbi.lotusintouch
+  zerodha: com.zerodha.kite3
+  upstox: in.upstox.app
+  cred: com.dreamplug.androidapp
+  simpl: com.simpl.android
+  epifi: com.epifi.paisa
+  snapmint: com.snapmint.customerapp
+  cibil: com.tuci.cibilindia
+  
+  # ===== WORK & PRODUCTIVITY =====
+  outlook: com.microsoft.office.outlook
+  teams: com.microsoft.teams
+  github: com.github.android
+  zoho mail: com.zoho.mail
+  zoho people: com.zoho.people
+  zoho payroll: com.zoho.payroll
+  adobe scan: com.adobe.scan.android
+  snapseed: com.niksoftware.snapseed
+  steam: com.valvesoftware.android.steam.community
+  
+  # ===== JOBS & CAREER =====
+  naukri: naukriApp.appModules.login
+  naukri gulf: com.naukriGulf.app
+  monster: com.monsterindia.seeker.views
+  ziprecruiter: com.ziprecruiter.android.release
+  xing: com.xing.android
+  jobsdb: com.jobsdb
+  job finder: com.direct_us.jobfinder
+  
+  # ===== HEALTH & FITNESS =====
+  healthifyme: com.healthifyme.basic
+  
+  # ===== HOME SERVICES =====
+  urban company: com.urbanclap.urbanclap
+  nobroker: com.app.nobrokerhood
+  porter: com.theporter.android.customerapp
+  
+  # ===== LEARNING =====
+  udemy: com.udemy.android
+  
+  # ===== GOVERNMENT =====
+  aadhaar: in.gov.uidai.mAadhaarPlus
+  digilocker: com.digilocker.android
+  
+  # ===== UTILITIES =====
+  airtel: com.myairtelapp
+  bookmyshow: com.bt.bms
+  asian paints: com.asianpaints.dbu.digital.colourwithasianpaints
+  boat: com.boAt.hearables
+  honda: com.hmsi.myhondaindia
+  video converter: com.inverseai.video_converter
+  seal downloader: com.hkapps.sealdownloader
+  expense tracker: com.expensetracker
+  mmi maps: com.mmi.maps
+  kundli: com.vedicrishiastro.kundli
+  melooha: com.melooha.app
+
+# Prompts for Vision Analysis
+prompts:
+  screen_description: |
+    I am a blind user. Analyze this Android screen and provide a concise description (2-3 sentences) of what is currently displayed.
+    
+    Focus on:
+    - The main content or purpose of the screen
+    - Any important text, buttons, or interactive elements
+    - Whether this appears to be a login/authentication screen
+    - Any popups, alerts, or error messages
+    
+    Respond in JSON format:
+    {
+        "description": "Brief description of the screen",
+        "is_login_screen": true/false,
+        "has_popup": true/false,
+        "elements": [
+            {"description": "element name", "x": 100, "y": 200, "type": "button|text_field|link|other"}
+        ]
+    }
+  
+  login_detection: |
+    Analyze this Android screen and determine if it is a login or authentication screen.
+    Look for:
+    - Email/username input fields
+    - Password input fields
+    - "Sign in", "Log in", "Login" buttons
+    - Registration or account creation options
+    
+    Respond with JSON:
+    {
+        "is_login_screen": true/false,
+        "login_type": "email|username|phone|other",
+        "has_password_field": true/false,
+        "has_remember_me": true/false
+    }
+  
+  element_detection: |
+    Identify all clickable/interactive elements on this Android screen.
+    For each element, provide:
+    - Description of what it is
+    - Approximate screen coordinates (x, y) for a 1080x2400 pixel screen
+    - Element type (button, text_field, link, icon, etc.)
+    
+    Respond in JSON format with an array of elements.
+
+# Agent Configuration
+agent:
+  wake_word: "hey assistant"
+  default_timeout: 5.0
+  action_delay: 0.5
+  screenshot_delay: 3.0  # Wait time after app launch before screenshot
+  retry_attempts: 1  # Reduced to 1 to avoid long waits
+  retry_delay: 1.0  # Reduced delay
+
+# Vision Model Configuration
+vision:
+  model: "gpt-4o"  # Options: gpt-4o-mini (faster), gpt-4o (more accurate)
+  temperature: 0.2  # Lower for faster, more consistent results
+  max_tokens: 800  # Reduced for faster responses
+
+# Voice Configuration
+voice:
+  stt_backend: "whisper"  # Options: google, whisper (whisper is more accurate, requires OpenAI API key)
+  speech_rate: 150  # Words per minute
+  volume: 1.0  # 0.0 to 1.0 (1.0 = maximum volume)

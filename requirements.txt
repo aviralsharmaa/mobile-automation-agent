@@ -1,0 +1,28 @@
+# Core Dependencies
+pure-python-adb>=0.3.0.dev0
+openai>=1.0.0
+pillow>=10.0.0
+pydantic>=2.0.0
+python-dotenv>=1.0.0
+pyyaml>=6.0
+
+# Voice Processing
+SpeechRecognition>=3.10.0
+openai-whisper>=20231117
+pyttsx3>=2.90
+pyaudio>=0.2.11  # Required for microphone input (STT)
+
+# Agent Orchestration
+langgraph>=0.0.40
+langchain-core>=0.1.0
+
+# Additional utilities
+pyyaml>=6.0
+requests>=2.31.0
+
+# Web API Server
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+
+# TTS uses pyttsx3 (included above) - no additional dependencies needed
