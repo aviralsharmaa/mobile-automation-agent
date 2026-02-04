@@ -10,7 +10,8 @@ pyyaml>=6.0
 SpeechRecognition>=3.10.0
 openai-whisper>=20231117
 pyttsx3>=2.90
-pyaudio>=0.2.11  # Required for microphone input (STT)
+# pyaudio>=0.2.11  # Optional: Required for microphone input (STT) - not needed for Cloud Run/API server
+# Note: pyaudio requires system libraries (portaudio). For Cloud Run, use listen_from_file() instead.
 
 # Agent Orchestration
 langgraph>=0.0.40
